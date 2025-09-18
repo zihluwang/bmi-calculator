@@ -21,7 +21,7 @@ A command-line Body Mass Index (BMI) calculator written in Rust. This tool allow
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:zihluwang/bmi-calculator.git
    cd bmi-calculator
    ```
 
