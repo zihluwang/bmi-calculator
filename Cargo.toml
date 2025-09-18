@@ -2,6 +2,13 @@
 name = "bmi-calculator"
 version = "0.1.0"
 edition = "2024"
+authors = ["Zihlu Wang"]
+license = "MIT"
+description = "A command-line Body Mass Index (BMI) calculator written in Rust"
+homepage = "https://github.com/zihluwang/bmi-calculator"
+repository = "https://github.com/zihluwang/bmi-calculator"
+keywords = ["bmi", "health", "calculator", "cli", "fitness"]
+categories = ["command-line-utilities"]
 
 [dependencies]
 clap = { version = "4.0", features = ["derive"] }
