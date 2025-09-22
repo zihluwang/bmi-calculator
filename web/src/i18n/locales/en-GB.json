@@ -1,8 +1,8 @@
 {
   "app": {
-    "title": "",
+    "title": "BMI Calculator",
     "pageTitle": "BMI Calculator",
-    "copyright": "© {{year}} OnixByte. Built with React & TypeScript."
+    "copyright": "© {{year}} Zihlu Wang. Built with React & TypeScript."
   },
   "navigation": {
     "home": "Home",
@@ -11,8 +11,8 @@
   },
   "language": {
     "switch": "Switch Language",
-    "english": "English",
-    "chinese": "中文"
+    "english": "English (Great Britain)",
+    "chinese": "简体中文"
   },
   "bmi": {
     "title": "BMI Calculator",

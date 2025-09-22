@@ -1,8 +1,8 @@
 {
   "app": {
-    "title": "",
+    "title": "BMI 计算器",
     "pageTitle": "BMI 计算器",
-    "copyright": "© {{year}} OnixByte。 使用 React 和 TypeScript 构建。"
+    "copyright": "© {{year}} 王子路。 使用 React 和 TypeScript 构建。"
   },
   "navigation": {
     "home": "首页",
@@ -11,8 +11,8 @@
   },
   "language": {
     "switch": "切换语言",
-    "english": "English",
-    "chinese": "中文"
+    "english": "English (Great Britain)",
+    "chinese": "简体中文"
   },
   "bmi": {
     "title": "BMI 计算器",
