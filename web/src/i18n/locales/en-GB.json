@@ -1,0 +1,17 @@
+{
+  "app": {
+    "title": "BMI Calculator",
+    "pageTitle": "BMI Calculator",
+    "copyright": "© {{year}} Zihlu Wang. Built with React & TypeScript."
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "language": {
+    "switch": "Switch Language",
+    "english": "English (Great Britain)",
+    "chinese": "简体中文"
+  }
+}

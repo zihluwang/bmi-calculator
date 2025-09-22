@@ -1,0 +1,17 @@
+{
+  "app": {
+    "title": "BMI 计算器",
+    "pageTitle": "BMI 计算器",
+    "copyright": "© {{year}} Zihlu Wang. 使用 React 和 TypeScript 构建。"
+  },
+  "navigation": {
+    "home": "首页",
+    "about": "关于",
+    "contact": "联系"
+  },
+  "language": {
+    "switch": "切换语言",
+    "english": "English (Great Britain)",
+    "chinese": "简体中文"
+  }
+}
