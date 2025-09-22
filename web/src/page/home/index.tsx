@@ -1,139 +1,169 @@
-import { Link } from "react-router-dom"
+import { useState } from "react"
+import { useTranslation } from "react-i18next"
 
 /**
- * Home page component that displays the main landing content.
+ * Home page component that displays the BMI calculator.
  */
 export default function Home() {
+  const { t } = useTranslation()
+
+  const [weight, setWeight] = useState<string>("")
+  const [height, setHeight] = useState<string>("")
+  const [bmi, setBmi] = useState<number | null>(null)
+  const [bmiCategory, setBmiCategory] = useState<string>("")
+
+  const calculateBMI = () => {
+    const weightNum = parseFloat(weight)
+    const heightNum = parseFloat(height) / 100 // Convert cm to meters
+
+    if (weightNum > 0 && heightNum > 0) {
+      const bmiValue = weightNum / (heightNum * heightNum)
+      setBmi(parseFloat(bmiValue.toFixed(1)))
+
+      // Determine BMI category
+      if (bmiValue < 18.5) {
+        setBmiCategory("underweight")
+      } else if (bmiValue < 25) {
+        setBmiCategory("normal")
+      } else if (bmiValue < 30) {
+        setBmiCategory("overweight")
+      } else {
+        setBmiCategory("obese")
+      }
+    }
+  }
+
+  const resetCalculator = () => {
+    setWeight("")
+    setHeight("")
+    setBmi(null)
+    setBmiCategory("")
+  }
+
+  const getBmiColor = () => {
+    switch (bmiCategory) {
+      case "underweight":
+        return "text-blue-600"
+      case "normal":
+        return "text-green-600"
+      case "overweight":
+        return "text-yellow-600"
+      case "obese":
+        return "text-red-600"
+      default:
+        return "text-gray-600"
+    }
+  }
+
   return (
-    <div className="space-y-8">
-      {/* Hero Section */}
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
-          Welcome to OnixByte React Template
-        </h1>
-        <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-          A modern React application template with <b>TypeScript</b>, <b>Tailwind CSS</b>,{" "}
-          <b>Redux</b>, and <b>React Router</b> for seamless navigation.
-        </p>
-      </div>
+    <div className="w-full max-w-2xl mx-auto p-4 sm:p-6">
+      <div className="w-full space-y-6">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{t("bmi.title")}</h1>
+          <p className="text-sm sm:text-base text-gray-600">{t("bmi.description")}</p>
+        </div>
 
-      {/* Features Grid */}
-      <div className="mt-12">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Feature 1 */}
-          <div className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-6">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-8 w-8 text-blue-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Fast Development</h3>
-                </div>
+        {/* Calculator Form */}
+        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 w-150">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
+            {/* Weight Input */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {t("bmi.weight.label")}
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
+                  placeholder={t("bmi.weight.placeholder")}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
+                  min="1"
+                  max="500"
+                />
+                <span className="absolute right-3 top-3 text-gray-500 text-sm">kg</span>
               </div>
-              <div className="mt-4">
-                <p className="text-sm text-gray-500">
-                  Built with Vite for lightning-fast development experience and hot module
-                  replacement.
-                </p>
+            </div>
+
+            {/* Height Input */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {t("bmi.height.label")}
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  value={height}
+                  onChange={(e) => setHeight(e.target.value)}
+                  placeholder={t("bmi.height.placeholder")}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
+                  min="50"
+                  max="300"
+                />
+                <span className="absolute right-3 top-3 text-gray-500 text-sm">cm</span>
               </div>
             </div>
           </div>
 
-          {/* Feature 2 */}
-          <div className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-6">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-8 w-8 text-green-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Type Safety</h3>
-                </div>
-              </div>
-              <div className="mt-4">
-                <p className="text-sm text-gray-500">
-                  Full TypeScript support with strict type checking for better code quality and
-                  developer experience.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Feature 3 */}
-          <div className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-6">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-8 w-8 text-purple-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"
-                    />
-                  </svg>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Modern Styling</h3>
-                </div>
-              </div>
-              <div className="mt-4">
-                <p className="text-sm text-gray-500">
-                  Tailwind CSS for utility-first styling with responsive design and modern UI
-                  components.
-                </p>
-              </div>
-            </div>
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <button
+              onClick={calculateBMI}
+              disabled={!weight || !height}
+              className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-base">
+              {t("bmi.calculate")}
+            </button>
+            <button
+              onClick={resetCalculator}
+              className="sm:w-auto px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors text-base">
+              {t("bmi.reset")}
+            </button>
           </div>
         </div>
-      </div>
 
-      {/* Call to Action */}
-      <div className="bg-blue-50 rounded-lg p-6 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to start building?</h2>
-        <p className="text-gray-600 mb-6">
-          Explore the navigation above to see React Router in action, or check out the source code
-          to understand the implementation.
-        </p>
-        <div className="flex justify-center space-x-4">
-          <Link
-            to="/about"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-            Learn More
-          </Link>
-          <Link
-            to="/contact"
-            className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-            Get in Touch
-          </Link>
-        </div>
+        {/* BMI Result */}
+        {bmi !== null && (
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 w-150">
+            <div className="text-center">
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">
+                {t("bmi.result.title")}
+              </h2>
+              <div className={`text-3xl sm:text-4xl font-bold mb-2 ${getBmiColor()}`}>{bmi}</div>
+              <div className={`text-base sm:text-lg font-medium mb-4 ${getBmiColor()}`}>
+                {t(`bmi.category.${bmiCategory}`)}
+              </div>
+              <div className="text-gray-600 text-sm sm:text-base px-4">
+                {t(`bmi.advice.${bmiCategory}`)}
+              </div>
+            </div>
+
+            {/* BMI Scale */}
+            <div className="mt-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
+              <h3 className="text-sm font-medium text-gray-700 mb-3">{t("bmi.scale.title")}</h3>
+              <div className="space-y-2 text-xs sm:text-sm">
+                <div className="flex justify-between items-center">
+                  <span className="text-blue-600 font-medium">{t("bmi.category.underweight")}</span>
+                  <span className="text-gray-600">&lt; 18.5</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-green-600 font-medium">{t("bmi.category.normal")}</span>
+                  <span className="text-gray-600">18.5 - 24.9</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-yellow-600 font-medium">
+                    {t("bmi.category.overweight")}
+                  </span>
+                  <span className="text-gray-600">25.0 - 29.9</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-red-600 font-medium">{t("bmi.category.obese")}</span>
+                  <span className="text-gray-600">&ge; 30.0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
