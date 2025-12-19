@@ -18,29 +18,29 @@ export default function App() {
   }, [t])
 
   return (
-    <div className="h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Navigation Header */}
       <header className="bg-white shadow-sm border-b flex-shrink-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
+          <div className="flex flex-col sm:flex-row justify-between items-center min-h-[4rem] py-2 sm:py-0">
+            <div className="flex items-center mb-2 sm:mb-0">
               <h1 className="text-xl font-semibold text-gray-900">{t("app.title")}</h1>
             </div>
-            <nav className="flex items-center space-x-8">
-              <div className="flex space-x-8">
+            <nav className="flex flex-wrap justify-center items-center gap-4 sm:gap-8">
+              <div className="flex space-x-2 sm:space-x-8">
                 <Link
                   to="/"
-                  className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                  className="text-gray-500 hover:text-gray-900 px-2 sm:px-3 py-2 rounded-md text-sm font-medium">
                   {t("navigation.home")}
                 </Link>
                 <Link
                   to="/about"
-                  className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                  className="text-gray-500 hover:text-gray-900 px-2 sm:px-3 py-2 rounded-md text-sm font-medium">
                   {t("navigation.about")}
                 </Link>
                 <Link
                   to="/contact"
-                  className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                  className="text-gray-500 hover:text-gray-900 px-2 sm:px-3 py-2 rounded-md text-sm font-medium">
                   {t("navigation.contact")}
                 </Link>
               </div>
