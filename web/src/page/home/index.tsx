@@ -56,7 +56,7 @@ export default function Home() {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4 sm:p-6">
+    <div className="w-full max-w-3xl mx-auto p-4 sm:p-6">
       <div className="w-full space-y-6">
         {/* Header */}
         <div className="text-center">
@@ -65,8 +65,8 @@ export default function Home() {
         </div>
 
         {/* Calculator Form */}
-        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 w-150">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
+        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 w-full mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
             {/* Weight Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -124,7 +124,7 @@ export default function Home() {
 
         {/* BMI Result */}
         {bmi !== null && (
-          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 w-150">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 w-full mx-auto">
             <div className="text-center">
               <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">
                 {t("bmi.result.title")}
