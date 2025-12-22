@@ -33,16 +33,6 @@ export default function App() {
                   className="text-gray-500 hover:text-gray-900 px-2 sm:px-3 py-2 rounded-md text-sm font-medium">
                   {t("navigation.home")}
                 </Link>
-                <Link
-                  to="/about"
-                  className="text-gray-500 hover:text-gray-900 px-2 sm:px-3 py-2 rounded-md text-sm font-medium">
-                  {t("navigation.about")}
-                </Link>
-                <Link
-                  to="/contact"
-                  className="text-gray-500 hover:text-gray-900 px-2 sm:px-3 py-2 rounded-md text-sm font-medium">
-                  {t("navigation.contact")}
-                </Link>
               </div>
               <LanguageSwitcher />
             </nav>

@@ -5,9 +5,7 @@
     "copyright": "© {{year}} Zihlu Wang. Built with React & TypeScript."
   },
   "navigation": {
-    "home": "Home",
-    "about": "About",
-    "contact": "Contact"
+    "home": "Home"
   },
   "language": {
     "switch": "Switch Language",
